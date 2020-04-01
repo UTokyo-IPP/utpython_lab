@@ -1,0 +1,37 @@
+diff --git Makefile Makefile
+index 2796453..085b12f 100644
+--- Makefile
++++ Makefile
+@@ -28,7 +28,7 @@ COMMON_FLAGS += -O2 -c \
+ 	-D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 \
+ 	-fPIE \
+ 	-Wformat -Wformat-security -Wno-format-nonliteral \
+-	-Wall -Wextra -Werror \
++	-Wall -Wextra \
+ 	-Ikafel/include
+ 
+ CXXFLAGS += $(COMMON_FLAGS) $(shell pkg-config --cflags protobuf) \
+diff --git user.cc user.cc
+index 06c221a..7ebcb2d 100644
+--- user.cc
++++ user.cc
+@@ -247,7 +247,8 @@ bool initNsFromChild(nsjconf_t* nsjconf) {
+ 	if (prctl(PR_SET_SECUREBITS, SECBIT_KEEP_CAPS | SECBIT_NO_SETUID_FIXUP, 0UL, 0UL, 0UL) ==
+ 	    -1) {
+ 		PLOG_E("prctl(PR_SET_SECUREBITS, SECBIT_KEEP_CAPS | SECBIT_NO_SETUID_FIXUP)");
+-		return false;
++		// This fails under Cloud Run.
++		//return false;
+ 	}
+ 
+ 	/*
+@@ -292,7 +293,8 @@ bool initNsFromChild(nsjconf_t* nsjconf) {
+ 	 */
+ 	if (prctl(PR_SET_SECUREBITS, 0UL, 0UL, 0UL, 0UL) == -1) {
+ 		PLOG_E("prctl(PR_SET_SECUREBITS, 0)");
+-		return false;
++		// This fails under Cloud Run.
++		//return false;
+ 	}
+ 
+ 	return true;

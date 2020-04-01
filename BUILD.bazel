@@ -1,0 +1,25 @@
+load(
+    "@prog_edu_assistant//exercises:defs.bzl",
+    "assignment_notebook", "autograder_tar", "student_tar",
+)
+
+assignment_notebook(
+    name = "test-notebook",
+    src = "test-notebook.ipynb",
+    preamble = "preamble.py",
+)
+
+notebooks = [
+    ":test-notebook",
+    "//1:1-1",
+]
+
+autograder_tar(
+    name = "autograder_tar",
+    deps = notebooks,
+)
+
+student_tar(
+    name = "student_tar",
+    deps = notebooks,
+)
