@@ -1,0 +1,11 @@
+load("@prog_edu_assistant//exercises:defs.bzl", "assignment_notebook")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+assignment_notebook(
+    name = "1-1",
+    src = "1-1.ipynb",
+    preamble = "//:preamble.py",
+)

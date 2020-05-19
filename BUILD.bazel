@@ -1,6 +1,7 @@
-load(
-    "@prog_edu_assistant//exercises:defs.bzl",
-    "assignment_notebook", "autograder_tar", "student_tar",
+load("@prog_edu_assistant//exercises:defs.bzl", "assignment_notebook", "autograder_tar", "student_tar")
+
+package(
+    default_visibility = ["//visibility:public"],
 )
 
 assignment_notebook(
