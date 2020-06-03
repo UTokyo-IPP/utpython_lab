@@ -5,13 +5,14 @@ RUN apt-get -y update && apt-get -y upgrade
 RUN apt install -y ca-certificates && update-ca-certificates
 
 # The requirements for building nsjail.
-RUN apt-get -y install \
+RUN apt-get -y install --fix-missing \
   autoconf \
   bison \
   flex \
   gcc \
   g++ \
   git \
+  libprotobuf22 \
   libprotobuf-dev \
   libnl-route-3-dev \
   libtool \
@@ -27,23 +28,22 @@ RUN cd /root/nsjail && patch -p0 < /tmp/nsjail.patch && make
 
 # Start the deployment image to run Python.
 FROM debian:testing
-RUN apt-get -y update && apt-get -y upgrade && touch /tmp/force-rebuild
+RUN apt-get -y update && apt-get -y upgrade
 # Install the certificates
 RUN apt install -y ca-certificates && update-ca-certificates
 # Install the python environment (and nsjail runtime dependencies).
 # TODO(salikh): Move this to a separate stage.
 RUN apt-get install -y --fix-missing \
-    python3 python3-dev python3-scipy python3-pip python3-virtualenv \
-    libprotobuf22  libnl-route-3-200 \
-    freetype* bash mecab libmecab-dev swig \
-  && ln -s /usr/bin/pip3 /usr/bin/pip \
-  && ln -sf /usr/bin/python3 /usr/bin/python
-RUN pip install --no-cache-dir \
+    python3 python3-dev python3-pip python3-scipy python3-virtualenv \
+    libprotobuf22 libnl-route-3-200 \
+    freetype* bash mecab libmecab-dev swig
+RUN ln -sf /usr/bin/pip3 /usr/bin/pip && ln -sf /usr/bin/python3 /usr/bin/python \
+  && pip install --no-cache-dir \
     six arrow scikit-learn pandas numpy scikit-image Jinja2 pygments plotly_express mecab-python3
 
 # Copy the nsjail binary from the dev image 0.
 COPY --from=0  /root/nsjail/nsjail /usr/local/bin/nsjail
-COPY bin/uploadserver /usr/local/bin/uploadserver
+COPY bin/* /usr/local/bin/
 COPY static /static
 COPY autograder /autograder
 RUN mkdir /tmp/uploads /tmp/scratch
