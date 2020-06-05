@@ -2,3 +2,4 @@
 .ipynb_checkpoints
 /bazel-*
 /tmp
+/docker/*.env

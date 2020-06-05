@@ -4,7 +4,7 @@
 # Note: before using this script, you need to
 #   (1) Install Google Cloud SDK and log in using 'gcloud init' command
 #   (2) Configure deployment-specific environment by copying and editing
-#       
+#
 #       cp docker/cloud-run.env.template docker/cloud-run.env
 #       edit docker/cloud-run.env
 #

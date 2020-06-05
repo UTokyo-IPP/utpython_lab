@@ -1,4 +1,4 @@
-# NOTE: The authoritative original source of this snipped is in
+# NOTE: The authoritative original source of this snippet is in
 # https://github.com/UTokyo-IPP/utpython/preamble.py.
 
 #@title Submission snippet
