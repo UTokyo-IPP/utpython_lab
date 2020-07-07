@@ -15,6 +15,8 @@ mkdir -p tmp/
 tar xvfi bazel-bin/autograder_tar.tar -C tmp
 mkdir -p tmp/student
 tar xvfi bazel-bin/student_tar.tar -C tmp/student
+mkdir -p tmp/colab_student
+tar xvfi bazel-bin/colab_student_tar.tar -C tmp/colab_student
 
 if [ -f student ]; then
   cp -v student/* tmp/student/

@@ -7,12 +7,24 @@ package(
 assignment_notebook(
     name = "test-notebook",
     src = "test-notebook.ipynb",
+)
+
+assignment_notebook(
+    name = "test-notebook-colab",
+    src = "test-notebook.ipynb",
     preamble = "preamble.py",
 )
 
 notebooks = [
     ":test-notebook",
     "//1:1-1",
+    "//1:1-2",
+]
+
+colab_notebooks = [
+    ":test-notebook-colab",
+    "//1:1-1-colab",
+    "//1:1-2-colab",
 ]
 
 autograder_tar(
@@ -23,4 +35,9 @@ autograder_tar(
 student_tar(
     name = "student_tar",
     deps = notebooks,
+)
+
+student_tar(
+    name = "colab_student_tar",
+    deps = colab_notebooks,
 )

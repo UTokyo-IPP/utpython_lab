@@ -7,5 +7,21 @@ package(
 assignment_notebook(
     name = "1-1",
     src = "1-1.ipynb",
+)
+
+assignment_notebook(
+    name = "1-1-colab",
+    src = "1-1.ipynb",
+    preamble = "//:preamble.py",
+)
+
+assignment_notebook(
+    name = "1-2",
+    src = "1-2.ipynb",
+)
+
+assignment_notebook(
+    name = "1-2-colab",
+    src = "1-2.ipynb",
     preamble = "//:preamble.py",
 )
