@@ -1,4 +1,5 @@
 load("@prog_edu_assistant//exercises:defs.bzl", "assignment_notebook")
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
 
 package(
     default_visibility = ["//visibility:public"],
