@@ -12,7 +12,6 @@ RUN apt-get -y install --fix-missing \
   gcc \
   g++ \
   git \
-  libprotobuf22 \
   libprotobuf-dev \
   libnl-route-3-dev \
   libtool \
@@ -35,7 +34,7 @@ RUN apt install -y ca-certificates && update-ca-certificates
 # TODO(salikh): Move this to a separate stage.
 RUN apt-get install -y --fix-missing \
     python3 python3-dev python3-pip python3-scipy python3-virtualenv \
-    libprotobuf22 libnl-route-3-200 \
+    libprotobuf23 libnl-route-3-200 \
     freetype* bash mecab libmecab-dev swig
 RUN ln -sf /usr/bin/pip3 /usr/bin/pip && ln -sf /usr/bin/python3 /usr/bin/python \
   && pip install --no-cache-dir \
