@@ -19,12 +19,14 @@ notebooks = [
     ":test-notebook",
     "//1:1-1",
     "//1:1-2",
+    "//4:4-1",
 ]
 
 colab_notebooks = [
     ":test-notebook-colab",
     "//1:1-1-colab",
     "//1:1-2-colab",
+    "//4:4-1-colab",
 ]
 
 autograder_tar(

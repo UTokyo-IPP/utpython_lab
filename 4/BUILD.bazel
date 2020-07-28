@@ -1,0 +1,32 @@
+load("@prog_edu_assistant//exercises:defs.bzl", "assignment_notebook")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+assignment_notebook(
+    name = "4-1",
+    src = "4-1.ipynb",
+)
+
+assignment_notebook(
+    name = "4-1-colab",
+    src = "4-1.ipynb",
+    preamble = "//:preamble.py",
+)
+
+filegroup(
+    name = "sample_data",
+    srcs = glob(["sample.txt"]),
+)
+
+pkg_tar(
+    name = "4-1_data_tar",
+    srcs = [
+        ":sample_data",
+    ],
+    mode = "644",
+    package_dir = "autograder/q41/NumberOfCharacters",
+    strip_prefix = ".",
+)
+
