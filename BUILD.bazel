@@ -19,6 +19,7 @@ notebooks = [
     ":test-notebook",
     "//1:1-1",
     "//1:1-2",
+    "//1:1-3",
     "//4:4-1",
 ]
 
@@ -26,6 +27,7 @@ colab_notebooks = [
     ":test-notebook-colab",
     "//1:1-1-colab",
     "//1:1-2-colab",
+    "//1:1-3-colab",
     "//4:4-1-colab",
 ]
 
