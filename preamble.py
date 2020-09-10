@@ -1,10 +1,12 @@
 # NOTE: The authoritative original source of this snippet is in
 # https://github.com/UTokyo-IPP/utpython/preamble.py.
 
+import getpass
+
 #@title Submission snippet
-#@markdown Please [login to server](https://utpython-autograder-wi536cjdka-an.a.run.app/login) to get a JWT token and paste it here (inside of quotes).
-SERVER_URL = 'https://utpython-autograder-wi536cjdka-an.a.run.app'
-JWT_TOKEN = "" #@param
+#@markdown Please [login to server](https://utpython-autograder-v6gvzmyosa-an.a.run.app/login) to get a JWT token, run this cell and paste the JWT token.
+SERVER_URL = 'https://utpython-autograder-v6gvzmyosa-an.a.run.app'
+JWT_TOKEN = getpass.getpass('Enter JWT token:')
 
 import json
 import requests
@@ -48,3 +50,4 @@ if JWT_TOKEN == "":
   display.display(display.HTML("Please get JWT_TOKEN by visiting " +
                                  "<a href='" + SERVER_URL + "/login'>Login page</a>"))
   raise Exception("Please set JWT_TOKEN")
+
