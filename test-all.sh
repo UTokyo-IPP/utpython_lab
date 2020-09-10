@@ -23,4 +23,5 @@ python python/test_integration.py --student_notebook tmp/student/1/1-2-student.i
 python python/test_integration.py --student_notebook tmp/student/1/1-3-student.ipynb --master_notebook 1/1-3.ipynb --upload_url http://localhost:8000/upload.txt
 python python/test_integration.py --student_notebook tmp/student/2/2-1-student.ipynb --master_notebook 2/2-1.ipynb --upload_url http://localhost:8000/upload.txt
 python python/test_integration.py --student_notebook tmp/student/2/2-2-student.ipynb --master_notebook 2/2-2.ipynb --upload_url http://localhost:8000/upload.txt
+python python/test_integration.py --student_notebook tmp/student/2/2-3-student.ipynb --master_notebook 2/2-3.ipynb --upload_url http://localhost:8000/upload.txt
 echo OK

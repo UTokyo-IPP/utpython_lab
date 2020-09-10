@@ -27,3 +27,15 @@ assignment_notebook(
     preamble = "//:preamble.py",
     check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
 )
+
+assignment_notebook(
+    name = "2-3",
+    src = "2-3.ipynb",
+)
+
+assignment_notebook(
+    name = "2-3-colab",
+    src = "2-3.ipynb",
+    preamble = "//:preamble.py",
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
+)
