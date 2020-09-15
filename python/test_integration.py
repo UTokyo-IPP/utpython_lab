@@ -159,8 +159,7 @@ def main(argv):
       raise e
     assignment_id = snippet['metadata'].get('assignment_id')
     if assignment_id is None:
-      logging.error('Snippet does not have an assignment ID!')
-      continue
+      raise Exception('Snippet does not have an assignment ID!')
     exercise_result = result.get(exercise_id)
     if exercise_result is None:
       logging.error(f'Result does not have result for exercise {exercise_id}, '
@@ -175,35 +174,29 @@ def main(argv):
       # %%solution should always pass.
       for autotest_name, autotest_result in exercise_result['results'].items():
         if not autotest_result.get('passed'):
-          logging.error(f'FAIL: Autotest {autotest_name} failed. Logs:\n{exercise_result["logs"]}')
+          raise Exception(f'FAIL: Autotest {autotest_name} failed. Logs:\n{exercise_result["logs"]}')
         else:
           logging.info(f"Autotest {autotest_name} for {exercise_id} passed for canonical solution.")
     elif snippet['magic_type'] == 'submission' and not FLAGS.solution_only:
       if 'next_cell' not in snippet:
-        logging.error(f'INTERNAL ERROR: %%submission snippet does not have next_cell')
-        continue
+        raise Exception(f'INTERNAL ERROR: %%submission snippet does not have next_cell')
       check_source = snippet['next_cell'].get('source')
       if not check_source or len(check_source) < 2:
-        logging.error(f'Invalid check snippet: {snippet["next_cell"]}')
-        continue
+        raise Exception(f'Invalid check snippet: {snippet["next_cell"]}')
       autotest_lines = [(l, line) for l, line in enumerate(check_source) if re.search(r'%autotest', line)]
       if len(autotest_lines) != 1:
-        logging.error(f'Found none or too many %autotest lines:\n{check_source}')
-        continue
+        raise Exception(f'Found none or too many %autotest lines:\n{check_source}')
       autotest_line_index, autotest_line = autotest_lines[0]
       m = re.search(r'([a-zA-Z_][a-zA-Z0-9_]*),[ \t]*([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*=[ \t]*%autotest[ \t]*([a-zA-Z_0-9]*)', autotest_line)
       if not m:
-        logging.error(f'Check snippet has invalid %autotest line: {autotest_line}\n')
-        continue
+        raise Exception(f'Check snippet has invalid %autotest line: {autotest_line}\n')
       result_var_name = m.group(1)
       logs_var_name = m.group(2)
       autotest_name = m.group(3)
       if 'results' not in exercise_result or autotest_name not in exercise_result['results']:
-        logging.error(f'Did not find autotest {autotest_name} in results:\n{exercise_result}')
-        continue
+        raise Exception(f'Did not find autotest {autotest_name} in results:\n{exercise_result}')
       if 'logs' not in exercise_result or autotest_name not in exercise_result['logs']:
-        logging.error(f'Did not find autotest {autotest_name} in logs:\n{exercise_result}')
-        continue
+        raise Exception(f'Did not find autotest {autotest_name} in logs:\n{exercise_result}')
       check_env = {
           result_var_name: types.SimpleNamespace(results=exercise_result['results'][autotest_name]),
           logs_var_name: exercise_result['logs'][autotest_name],
