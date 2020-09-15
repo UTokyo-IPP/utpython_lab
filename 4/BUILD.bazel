@@ -15,6 +15,7 @@ assignment_notebook(
     src = "4-1.ipynb",
     preamble = ":preamble-4-1.py",
     preamble_metadata = '{"cellView":"form"}',
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
 )
 
 filegroup(
@@ -32,11 +33,31 @@ filegroup(
 
 # It is necessary to match the directory structure of autograder.
 pkg_tar(
-    name = "4-1_autograder_data_tar",
+    name = "4-1_NumberOfCharacters_autograder_data_tar",
     srcs = [
         ":sample_data",
     ],
     mode = "644",
     package_dir = "autograder/4-1/NumberOfCharacters",
+    strip_prefix = ".",
+)
+
+pkg_tar(
+    name = "4-1_LastLine_autograder_data_tar",
+    srcs = [
+        ":sample_data",
+    ],
+    mode = "644",
+    package_dir = "autograder/4-1/LastLine",
+    strip_prefix = ".",
+)
+
+pkg_tar(
+    name = "4-1_FileUpper_autograder_data_tar",
+    srcs = [
+        ":sample_data",
+    ],
+    mode = "644",
+    package_dir = "autograder/4-1/FileUpper",
     strip_prefix = ".",
 )

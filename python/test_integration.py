@@ -164,8 +164,12 @@ def main(argv):
     exercise_result = result.get(exercise_id)
     if exercise_result is None:
       logging.error(f'Result does not have result for exercise {exercise_id}, '
-                    f'but has {result.keys()}')
-      continue
+                    f'but has {result.keys()}: {result}')
+      error = f'but has {result.keys()}'
+      if 'error' in result.keys():
+        logging.error("ERROR: %s", result['error'])
+        error = result['error']
+      raise Exception(f'No result for excercise {exercise_id}: {error}')
     # Assume that the next code snippet starts with 'result, logs = %autotest ...'
     if snippet['magic_type'] == 'solution':
       # %%solution should always pass.

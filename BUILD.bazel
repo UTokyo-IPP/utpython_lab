@@ -44,12 +44,20 @@ colab_notebooks = [
 
 autograder_tar(
     name = "autograder_tar",
-    deps = notebooks,
+    deps = notebooks + [
+	"//4:4-1_NumberOfCharacters_autograder_data_tar",
+	"//4:4-1_LastLine_autograder_data_tar",
+	"//4:4-1_FileUpper_autograder_data_tar",
+    ],
 )
 
 student_tar(
     name = "student_tar",
     deps = notebooks,
+    # Include the sample.txt into the student notebook tar archive.
+    data = [
+	"//4:sample_data",
+    ],
 )
 
 student_tar(
