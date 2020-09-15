@@ -13,6 +13,7 @@ assignment_notebook(
     name = "test-notebook-colab",
     src = "test-notebook.ipynb",
     preamble = "preamble.py",
+    preamble_metadata = '{"cellView":"form"}',
 )
 
 notebooks = [

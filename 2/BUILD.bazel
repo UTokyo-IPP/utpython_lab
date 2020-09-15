@@ -13,6 +13,7 @@ assignment_notebook(
     name = "2-1-colab",
     src = "2-1.ipynb",
     preamble = "//:preamble.py",
+    preamble_metadata = '{"cellView":"form"}',
     check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
 )
 
@@ -25,6 +26,7 @@ assignment_notebook(
     name = "2-2-colab",
     src = "2-2.ipynb",
     preamble = "//:preamble.py",
+    preamble_metadata = '{"cellView":"form"}',
     check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
 )
 
@@ -37,5 +39,6 @@ assignment_notebook(
     name = "2-3-colab",
     src = "2-3.ipynb",
     preamble = "//:preamble.py",
+    preamble_metadata = '{"cellView":"form"}',
     check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
 )
