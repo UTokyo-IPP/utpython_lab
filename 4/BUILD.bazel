@@ -19,16 +19,24 @@ assignment_notebook(
 
 filegroup(
     name = "sample_data",
-    srcs = glob(["sample.txt"]),
+    srcs = [
+      "sample.txt",
+      "test_empty.txt",
+      "test_input.txt",
+      "test_last_line.txt",
+      "test_newline.txt",
+      "test_num_characters.txt",
+      "test_unicode.txt",
+    ],
 )
 
+# It is necessary to match the directory structure of autograder.
 pkg_tar(
-    name = "4-1_data_tar",
+    name = "4-1_autograder_data_tar",
     srcs = [
         ":sample_data",
     ],
     mode = "644",
-    package_dir = "autograder/q41/NumberOfCharacters",
+    package_dir = "autograder/4-1/NumberOfCharacters",
     strip_prefix = ".",
 )
-
