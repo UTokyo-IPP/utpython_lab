@@ -152,7 +152,11 @@ def main(argv):
         files={'notebook': submission_data},
         data={'exercise_id': exercise_id})
     logging.vlog(3, f'==== Autograder response ====\n{response.text}\n')
-    result = json.loads(response.text)
+    try:
+      result = json.loads(response.text)
+    except Exception as e:
+      logging.info("Exercise %s failed", exercise_id)
+      raise e
     assignment_id = snippet['metadata'].get('assignment_id')
     if assignment_id is None:
       logging.error('Snippet does not have an assignment ID!')
