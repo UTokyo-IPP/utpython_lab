@@ -1,0 +1,41 @@
+load("@prog_edu_assistant//exercises:defs.bzl", "assignment_notebook")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+assignment_notebook(
+    name = "1-1",
+    src = "1-1.ipynb",
+)
+
+assignment_notebook(
+    name = "1-1-colab",
+    src = "1-1.ipynb",
+    preamble = "//:preamble.py",
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
+)
+
+assignment_notebook(
+    name = "1-2",
+    src = "1-2.ipynb",
+)
+
+assignment_notebook(
+    name = "1-2-colab",
+    src = "1-2.ipynb",
+    preamble = "//:preamble.py",
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
+)
+
+assignment_notebook(
+    name = "1-3",
+    src = "1-3.ipynb",
+)
+
+assignment_notebook(
+    name = "1-3-colab",
+    src = "1-3.ipynb",
+    preamble = "//:preamble.py",
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
+)
