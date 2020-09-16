@@ -13,21 +13,51 @@ assignment_notebook(
 assignment_notebook(
     name = "4-1-colab",
     src = "4-1.ipynb",
-    preamble = "//:preamble.py",
+    preamble = ":preamble-4-1.py",
+    preamble_metadata = '{"cellView":"form"}',
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
 )
 
 filegroup(
     name = "sample_data",
-    srcs = glob(["sample.txt"]),
+    srcs = [
+      "sample.txt",
+      "test_empty.txt",
+      "test_input.txt",
+      "test_last_line.txt",
+      "test_newline.txt",
+      "test_num_characters.txt",
+      "test_unicode.txt",
+    ],
 )
 
+# It is necessary to match the directory structure of autograder.
 pkg_tar(
-    name = "4-1_data_tar",
+    name = "4-1_NumberOfCharacters_autograder_data_tar",
     srcs = [
         ":sample_data",
     ],
     mode = "644",
-    package_dir = "autograder/q41/NumberOfCharacters",
+    package_dir = "autograder/4-1/NumberOfCharacters",
     strip_prefix = ".",
 )
 
+pkg_tar(
+    name = "4-1_LastLine_autograder_data_tar",
+    srcs = [
+        ":sample_data",
+    ],
+    mode = "644",
+    package_dir = "autograder/4-1/LastLine",
+    strip_prefix = ".",
+)
+
+pkg_tar(
+    name = "4-1_FileUpper_autograder_data_tar",
+    srcs = [
+        ":sample_data",
+    ],
+    mode = "644",
+    package_dir = "autograder/4-1/FileUpper",
+    strip_prefix = ".",
+)

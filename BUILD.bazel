@@ -13,6 +13,7 @@ assignment_notebook(
     name = "test-notebook-colab",
     src = "test-notebook.ipynb",
     preamble = "preamble.py",
+    preamble_metadata = '{"cellView":"form"}',
 )
 
 notebooks = [
@@ -24,6 +25,7 @@ notebooks = [
     "//2:2-2",
     "//2:2-3",
     "//3:3-1",
+    "//3:3-2",
     "//4:4-1",
 ]
 
@@ -36,17 +38,26 @@ colab_notebooks = [
     "//2:2-2-colab",
     "//2:2-3-colab",
     "//3:3-1-colab",
+    "//3:3-2-colab",
     "//4:4-1-colab",
 ]
 
 autograder_tar(
     name = "autograder_tar",
-    deps = notebooks,
+    deps = notebooks + [
+	"//4:4-1_NumberOfCharacters_autograder_data_tar",
+	"//4:4-1_LastLine_autograder_data_tar",
+	"//4:4-1_FileUpper_autograder_data_tar",
+    ],
 )
 
 student_tar(
     name = "student_tar",
     deps = notebooks,
+    # Include the sample.txt into the student notebook tar archive.
+    data = [
+	"//4:sample_data",
+    ],
 )
 
 student_tar(

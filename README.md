@@ -22,6 +22,15 @@ the notebooks:
 bazel build ...
 ```
 
+# Build the student notebooks
+
+```shell
+./build-student.sh
+```
+
+The Jupyter version of the student notebooks can be found in `tmp/student`,
+and Colab version of the student notebooks is in `tmp/colab_student`.
+
 # Build the deployment image
 
 ```shell
@@ -33,3 +42,46 @@ docker/build-docker-image.sh
 ```shell
 docker/start-local-server.sh
 ```
+
+# Deploy the autograder to Google Cloud Run
+
+   * Install the [Google Cloud SDK](https://cloud.google.com/sdk/docs/install), including Go support.
+   * Authorize and configure the GCP project by running
+     ```
+     gcloud init
+     ```
+   * Create a [Cloud Storage](https://console.cloud.google.com/storage/browser) bucket for storing logs
+   * Enable [Google Cloud Run](https://cloud.google.com/cloud-build/docs/deploying-builds/deploy-cloud-run)
+   * Create a [OAuth2 client ID](https://console.cloud.google.com/apis/credentials) and download
+     it in JSON format.
+   * Create a RSA private key for JWT signing. There are multiple ways of doing that,
+     for example, using the `keytool.go` from http://github.com/google/prog-edu-assistant:
+     ```
+     cd ../prog-edu-assistant
+     go run go/cmd/keytool/keytool.go \
+       --action createkey \
+       --output_private_key jwt.priv \
+       --output_public_key jwt.pub
+     ```
+     Another option is to use `openssl` command:
+     ```
+     openssl genrsa -out jwt.priv 2048
+     ```
+     Copy the private key file to Google Cloud storage (any bucket is okay):
+     ```
+     gsutil cp jwt.priv gs://<bucket-name>/
+     ```
+
+   * Copy the file `docker/cloud-run.env.template` to `docker/cloud-run.env` and fill in
+     the details. You may need to skip the SERVER_URL if you do not know the deployment
+     URL yet.
+
+   * Run the deployment command:
+     ```
+     ./docker/deploy-cloud-run.sh
+     ```
+
+   * If it was the first time to deploy, find the deployment URL in the
+     [Google Cloud console](https://console.cloud.google.com/run/detail/asia-northeast1/utpython-autograder/metrics),
+     and paste it into `docker/cloud-run.env`. You also need to edit the Colab submission
+     snippet (`preamble.py`), update the server URL and rebuild the student Colab notebooks.
