@@ -28,6 +28,7 @@ notebooks = [
     "//3:3-2",
     "//4:4-1",
     "//4:4-2",
+    "//5:5-1",
 ]
 
 colab_notebooks = [
@@ -42,6 +43,7 @@ colab_notebooks = [
     "//3:3-2-colab",
     "//4:4-1-colab",
     "//4:4-2-colab",
+    "//5:5-1-colab",
 ]
 
 autograder_tar(
