@@ -4,8 +4,8 @@
 import getpass
 
 #@title Submission snippet
-#@markdown Please [login to server](https://utpython-autograder-v6gvzmyosa-an.a.run.app/login) to get a JWT token, run this cell and paste the JWT token.
-SERVER_URL = 'https://utpython-autograder-v6gvzmyosa-an.a.run.app'
+#@markdown Please [login to server](https://utpython-autograder-wi536cjdka-an.a.run.app/login) to get a JWT token, run this cell and paste the JWT token.
+SERVER_URL = 'https://utpython-autograder-wi536cjdka-an.a.run.app'
 JWT_TOKEN = getpass.getpass('Enter JWT token:')
 
 import json
