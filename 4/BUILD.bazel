@@ -18,6 +18,20 @@ assignment_notebook(
     check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
 )
 
+assignment_notebook(
+    name = "4-2",
+    src = "4-2.ipynb",
+)
+
+assignment_notebook(
+    name = "4-2-colab",
+    src = "4-2.ipynb",
+    preamble = ":preamble-4-1.py",
+    preamble_metadata = '{"cellView":"form"}',
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
+)
+
+
 filegroup(
     name = "sample_data",
     srcs = [
@@ -59,5 +73,15 @@ pkg_tar(
     ],
     mode = "644",
     package_dir = "autograder/4-1/FileUpper",
+    strip_prefix = ".",
+)
+
+pkg_tar(
+    name = "4-2_LastLine_autograder_data_tar",
+    srcs = [
+        ":sample_data",
+    ],
+    mode = "644",
+    package_dir = "autograder/4-2/LastLine",
     strip_prefix = ".",
 )
