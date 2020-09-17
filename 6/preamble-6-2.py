@@ -50,23 +50,23 @@ def Submit(exercise_id=None):
 import os
 with open('jugemu.txt', 'w') as f:
     f.write('''じゅげむ　じゅげむ　ごこうのすりきれ
-    かいじゃりすいぎょの　すいぎょうまつ
+かいじゃりすいぎょの　すいぎょうまつ
 
-    うんらいまつ　ふうらいまつ
+うんらいまつ　ふうらいまつ
 
-    くうねるところに　すむところ
+くうねるところに　すむところ
 
-    やぶらこうじの　ぶらこうじ
+やぶらこうじの　ぶらこうじ
 
-    パイポパイポ
+パイポパイポ
 
-    パイポのシューリンガン
+パイポのシューリンガン
 
-    シューリンガンのグーリンダイ
+シューリンガンのグーリンダイ
 
-    グーリンダイのポンポコピーのポンポコナーの
+グーリンダイのポンポコピーのポンポコナーの
 
-    ちょうきゅうめいのちょうすけ
+ちょうきゅうめいのちょうすけ
 ''')
 with open('empty.txt', 'w') as f:
     f.write('')
@@ -95,3 +95,4 @@ if JWT_TOKEN == "":
                                  "<a href='" + SERVER_URL + "/login'>Login page</a>"))
   raise Exception("Please set JWT_TOKEN")
 
+print('Read JWT token.')

@@ -51,6 +51,8 @@ if JWT_TOKEN == "":
                                  "<a href='" + SERVER_URL + "/login'>Login page</a>"))
   raise Exception("Please set JWT_TOKEN")
 
+print('Read JWT token.')
+
 # Create the sample text.
 import os
 with open('sample.txt', 'w') as f:
