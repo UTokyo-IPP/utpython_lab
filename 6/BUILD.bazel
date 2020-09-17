@@ -51,3 +51,17 @@ pkg_tar(
     package_dir = "autograder/6-2/NumberOfLongLines",
     strip_prefix = ".",
 )
+
+assignment_notebook(
+    name = "6-3",
+    src = "6-3.ipynb",
+)
+
+assignment_notebook(
+    name = "6-3-colab",
+    src = "6-3.ipynb",
+    preamble = "//:preamble.py",
+    preamble_metadata = '{"cellView":"form"}',
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
+)
+
