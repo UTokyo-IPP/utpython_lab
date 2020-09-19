@@ -1,0 +1,67 @@
+load("@prog_edu_assistant//exercises:defs.bzl", "assignment_notebook")
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+assignment_notebook(
+    name = "6-1",
+    src = "6-1.ipynb",
+)
+
+assignment_notebook(
+    name = "6-1-colab",
+    src = "6-1.ipynb",
+    preamble = "//:preamble.py",
+    preamble_metadata = '{"cellView":"form"}',
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
+)
+
+assignment_notebook(
+    name = "6-2",
+    src = "6-2.ipynb",
+)
+
+assignment_notebook(
+    name = "6-2-colab",
+    src = "6-2.ipynb",
+    preamble = ":preamble-6-2.py",
+    preamble_metadata = '{"cellView":"form"}',
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
+)
+
+filegroup(
+    name = "sample_data",
+    srcs = [
+      "abcde-noeol.txt",
+      "abcde.txt",
+      "empty.txt",
+      "jugemu.txt",
+    ],
+)
+
+# It is necessary to match the directory structure of autograder.
+pkg_tar(
+    name = "6-2_NumberOfLongLines_autograder_data_tar",
+    srcs = [
+        ":sample_data",
+    ],
+    mode = "644",
+    package_dir = "autograder/6-2/NumberOfLongLines",
+    strip_prefix = ".",
+)
+
+assignment_notebook(
+    name = "6-3",
+    src = "6-3.ipynb",
+)
+
+assignment_notebook(
+    name = "6-3-colab",
+    src = "6-3.ipynb",
+    preamble = "//:preamble.py",
+    preamble_metadata = '{"cellView":"form"}',
+    check_cell_template = "# Run this cell to check your solution.\nSubmit(\"{{.exercise_id}}\")",
+)
+

@@ -30,6 +30,9 @@ notebooks = [
     "//4:4-2",
     "//5:5-1",
     "//5:5-3",
+    "//6:6-1",
+    "//6:6-2",
+    "//6:6-3",
 ]
 
 colab_notebooks = [
@@ -46,6 +49,9 @@ colab_notebooks = [
     "//4:4-2-colab",
     "//5:5-1-colab",
     "//5:5-3-colab",
+    "//6:6-1-colab",
+    "//6:6-2-colab",
+    "//6:6-3-colab",
 ]
 
 autograder_tar(
@@ -55,6 +61,7 @@ autograder_tar(
 	"//4:4-1_LastLine_autograder_data_tar",
 	"//4:4-1_FileUpper_autograder_data_tar",
 	"//4:4-2_LastLine_autograder_data_tar",
+	"//6:6-2_NumberOfLongLines_autograder_data_tar",
     ],
 )
 
@@ -64,6 +71,7 @@ student_tar(
     # Include the sample.txt into the student notebook tar archive.
     data = [
 	"//4:sample_data",
+	"//6:sample_data",
     ],
 )
 

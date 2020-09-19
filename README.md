@@ -83,5 +83,45 @@ docker/start-local-server.sh
 
    * If it was the first time to deploy, find the deployment URL in the
      [Google Cloud console](https://console.cloud.google.com/run/detail/asia-northeast1/utpython-autograder/metrics),
-     and paste it into `docker/cloud-run.env`. You also need to edit the Colab submission
+     and update `SERVER_URL` in `docker/cloud-run.env`. You also need to edit the Colab submission
      snippet (`preamble.py`), update the server URL and rebuild the student Colab notebooks.
+
+# How to run the integration tests
+
+This repository includes a script for quickly sending a few requests to a locally running instance
+of autograder backend to verify that it can handle canonical and non-canonical submissions correctly.
+The contents of the submission is automatically constructed from two parts:
+
+   * The student notebook provides the template of the ipynb file (because each submission uploads
+     the full .ipynb file that student is workin on).
+
+   * The master notebook provides submission code snippets: canonical solutions are those marked
+     with `%%solution` magic, and non-canonical submissions are those marked with `%%submission`.
+     The canonical solutions are expected to result in passed tests. For non-canonical submission
+     snippets, the script expect to find a python snippet with assertions in a cell immediately
+     following the `%%submission` snippet.
+
+Run the integration tests:
+
+```shell
+# Start the local autograder backend (Docker based):
+docker/start-local-server.sh
+```
+
+Wait until the backend is ready. It will build the Docker image and report the URL
+it is listening at. The test assumes the URL is `http://localhost:8000'.
+
+```shell
+# Build the student notebooks and extract them to ./tmp/student:
+./build-student.sh
+# Run the integration tests:
+./test-all.sh
+```
+
+Note, that the above command prints the outcomes of submissions, which occasionally
+contains error messages. This is by design, as the integration test sends not only
+correct submissions, but incorrect submissions too. To understand whether the integration
+test itself passed or failed, you need to look for the final `OK` message printed
+by the script and check the status code of the script.
+
+       

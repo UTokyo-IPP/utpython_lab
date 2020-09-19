@@ -46,6 +46,50 @@ def Submit(exercise_id=None):
                                  "in a new browser tab."))  
   display.display(display.HTML(r.content.decode('utf-8')))
   
+# Create the sample text files.
+import os
+with open('jugemu.txt', 'w') as f:
+    f.write('''じゅげむ　じゅげむ　ごこうのすりきれ
+かいじゃりすいぎょの　すいぎょうまつ
+
+うんらいまつ　ふうらいまつ
+
+くうねるところに　すむところ
+
+やぶらこうじの　ぶらこうじ
+
+パイポパイポ
+
+パイポのシューリンガン
+
+シューリンガンのグーリンダイ
+
+グーリンダイのポンポコピーのポンポコナーの
+
+ちょうきゅうめいのちょうすけ
+''')
+with open('empty.txt', 'w') as f:
+    f.write('')
+with open('abcde.txt', 'w') as f:
+    f.write('''a
+ab
+abc
+abcd
+abcde
+abcdef
+abcdefg
+abcdefgh
+''')
+with open('abcde-noeol.txt', 'w') as f:
+    f.write('''a
+ab
+abc
+abcd
+abcde
+abcdef
+abcdefg
+abcdefgh''')
+
 if JWT_TOKEN == "":
   display.display(display.HTML("Please get JWT_TOKEN by visiting " +
                                  "<a href='" + SERVER_URL + "/login'>Login page</a>"))
