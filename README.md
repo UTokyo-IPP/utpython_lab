@@ -3,7 +3,7 @@ The Colaboratory notebook files for UTPython, the Introduction to Python Program
 https://sites.google.com/view/ut-python/
 
 # Text Book
-https://utokyo-ipp.github.io/toc.html
+https://utokyo-ipp.github.io/
 
 # How to set up development environment
 
